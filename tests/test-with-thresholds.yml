@@ -1,0 +1,27 @@
+name: Test with permissive thresholds
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Run GitHub Status action with permissive thresholds
+        id: action
+        uses: .
+        with:
+          overall_threshold: critical
+          git_threshold: major_outage
+          api_threshold: major_outage
+          webhooks_threshold: major_outage
+          issues_threshold: major_outage
+          prs_threshold: major_outage
+          actions_threshold: major_outage
+          packages_threshold: major_outage
+          pages_threshold: major_outage
+          codespaces_threshold: major_outage
+          copilot_threshold: major_outage
+      - name: Assert action completed successfully with thresholds
+        run: |
+          echo "Action completed with permissive thresholds without error"
+          echo "PASS"
