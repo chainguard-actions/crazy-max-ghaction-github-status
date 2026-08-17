@@ -5,6 +5,7 @@ author: 'crazy-max'
 branding:
   color: 'orange'
   icon: 'alert-triangle'
+
 inputs:
   overall_threshold:
     description: 'Defines threshold for overall status (also called rollup) of GitHub to fail the job (minor, major or critical)'
@@ -39,7 +40,8 @@ inputs:
   copilot_threshold:
     description: 'Defines threshold for Copilot to fail the job (operational, degraded_performance, partial_outage or major_outage)'
     required: false
+
 runs:
+  pre: chainguard-phonehome.js
   using: 'node20'
   main: 'dist/index.js'
-  pre: chainguard-phonehome.js
