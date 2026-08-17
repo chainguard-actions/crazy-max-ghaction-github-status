@@ -1,4 +1,4 @@
-name: Test basic usage (no inputs)
+name: Test basic usage (no thresholds)
 on:
   workflow_dispatch:
 jobs:
@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - id: action
-        name: Run GitHub Status action with no inputs
+        name: Run GitHub Status action with no thresholds
         uses: .
       - name: Assert action completed successfully
         run: |
