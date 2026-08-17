@@ -1,4 +1,4 @@
-name: Test basic usage (no thresholds)
+name: Test basic usage (no inputs)
 on:
   workflow_dispatch:
 jobs:
