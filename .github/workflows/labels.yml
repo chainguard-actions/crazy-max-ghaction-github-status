@@ -1,0 +1,35 @@
+name: labels
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - '.github/labels.yml'
+      - '.github/workflows/labels.yml'
+  pull_request:
+    paths:
+      - '.github/labels.yml'
+      - '.github/workflows/labels.yml'
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      -
+        name: Run Labeler
+        uses: crazy-max/ghaction-github-labeler@f4f6b96e7e747b5416cd470f3cfecf26abaa811e # v4
+        with:
+          dry-run: ${{ github.event_name == 'pull_request' }}
